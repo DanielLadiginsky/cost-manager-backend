@@ -23,7 +23,7 @@ router.post('/add', async (req, res) => {
     const savedCost = await cost.save();
     return res.status(201).json(savedCost);
   } catch (err) {
-    console.error('❌ Failed to add cost:', err);
+    console.error(' Failed to add cost:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -76,7 +76,7 @@ router.get('/report', async (req, res) => {
 
     return res.status(200).json(grouped);
   } catch (err) {
-    console.error('❌ Failed to generate report:', err);
+    console.error(' Failed to generate report:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -101,9 +101,21 @@ router.get('/users/:id', async (req, res) => {
         total
       });
     } catch (err) {
-      console.error('❌ Failed to get user data:', err);
+      console.error(' Failed to get user data:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
   });
 
+  // GET /api/about
+router.get('/about', async (req, res) => {
+    try {
+      const users = await User.find({}, { _id: 0, first_name: 1, last_name: 1 });
+  
+      return res.json(users);
+    } catch (err) {
+      console.error(' Failed to fetch about data:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 module.exports = router;
