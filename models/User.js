@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+/**
+ * @typedef {Object} User
+ * @property {number} id - Unique user identifier
+ * @property {string} first_name - User's first name
+ * @property {string} last_name - User's last name
+ * @property {Date} birthday - User's date of birth
+ * @property {'single'|'married'|'divorced'|'widowed'} marital_status - Marital status
+ */
+
+/**
+ * Mongoose schema for User
+ */
 const userSchema = new mongoose.Schema({
   id: {
     type: Number,
@@ -25,4 +37,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+/**
+ * Exports the User model based on the schema
+ * @type {mongoose.Model<User>}
+ */
 module.exports = mongoose.model('User', userSchema);
