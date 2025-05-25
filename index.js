@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config(); 
+const costRoutes = require('./routes/costRoutes');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api', costRoutes);
 
 app.get('/', (req, res) => {
   res.send('Cost Manager API is running ');
