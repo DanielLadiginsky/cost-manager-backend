@@ -14,17 +14,17 @@ const mongoose = require('mongoose');
  */
 const costSchema = new mongoose.Schema({
   userid: {
-    type: Number,
+    type: String,
     required: true
   },
   description: {
     type: String,
     required: true
   },
-  category: {
-    type: String,
+  category: { 
+    type: String, 
+    required: true,
     enum: ['food', 'health', 'housing', 'sport', 'education'],
-    required: true
   },
   sum: {
     type: Number,

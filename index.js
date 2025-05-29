@@ -9,7 +9,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const costRoutes = require('./routes/costRoutes');
-
+const userRoutes = require('./routes/userRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 const app = express();
 
 /**
@@ -26,6 +27,8 @@ app.use(express.json());
  * Register API routes under /api
  */
 app.use('/api', costRoutes);
+app.use('/api', userRoutes);
+app.use('/api', reportRoutes);
 
 /**
  * Connect to MongoDB using Mongoose

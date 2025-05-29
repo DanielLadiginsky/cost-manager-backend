@@ -33,10 +33,43 @@ exports.getUserDetails = async (req, res) => {
  */
 exports.getAbout = async (req, res) => {
   try {
-    const users = await User.find({}, { _id: 0, first_name: 1, last_name: 1 });
+    const users = await User.find({}, { _id: 0, first_name: 1, last_name: 1, id: 1 });
     return res.json(users);
   } catch (err) {
     console.error('Failed to fetch about data:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+/**
+ * Add a new user
+ */
+exports.addUser = async (req, res) => {
+    try {
+      const { id, first_name, last_name, birthday, marital_status } = req.body;
+  
+      if (!id || !first_name || !last_name || !birthday || !marital_status) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+  
+      // Check if user already exists
+      const existingUser = await User.findOne({ id });
+      if (existingUser) {
+        return res.status(409).json({ error: 'User already exists' });
+      }
+  
+      const user = new User({
+        id,
+        first_name,
+        last_name,
+        birthday: new Date(birthday),
+        marital_status
+      });
+  
+      const savedUser = await user.save();
+      return res.status(201).json(savedUser);
+    } catch (err) {
+      console.error('Failed to add user:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  };

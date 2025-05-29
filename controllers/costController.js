@@ -39,15 +39,16 @@ exports.getReport = async (req, res) => {
     }
 
     const startDate = new Date(`${year}-${month}-01`);
-    const endDate = new Date(`${year}-${month}-31`);
+    const endDate = new Date(year, month, 0); 
+
 
     const costs = await Cost.find({
-      userid: parseInt(id),
+      userid:id,
       date: { $gte: startDate, $lte: endDate }
     });
 
     const grouped = {
-      userid: parseInt(id),
+      userid: id,
       year: parseInt(year),
       month: parseInt(month),
       costs: [
