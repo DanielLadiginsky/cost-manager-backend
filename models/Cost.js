@@ -21,10 +21,10 @@ const costSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  category: {
-    type: String,
+  category: { 
+    type: String, 
+    required: true,
     enum: ['food', 'health', 'housing', 'sport', 'education'],
-    required: true
   },
   sum: {
     type: Number,

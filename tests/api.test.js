@@ -73,6 +73,36 @@ describe('API Endpoints', () => {
     expect(res.statusCode).toBe(404);
     expect(res.body).toHaveProperty('error');
   });
+
+  test('GET /api/report/by-category - success', async () => {
+    const res = await request(app).get('/api/report/by-category?userid=123123');
+  
+    expect(res.statusCode).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    if (res.body.length > 0) {
+      expect(res.body[0]).toHaveProperty('_id'); // category name
+      expect(res.body[0]).toHaveProperty('total'); // total sum
+    }
+  });
+
+  test('GET /api/report/by-month - success', async () => {
+    const res = await request(app).get('/api/report/by-month?userid=123123');
+  
+    expect(res.statusCode).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    if (res.body.length > 0) {
+      expect(res.body[0]).toHaveProperty('_id'); // month number
+      expect(res.body[0]).toHaveProperty('total'); // total sum
+    }
+  });
+  
+  test('GET /api/report/total - success', async () => {
+    const res = await request(app).get('/api/report/total?userid=123123&year=2025');
+  
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('total');
+  });
+  
 });
 
 afterAll(async () => {
