@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
  */
 const costSchema = new mongoose.Schema({
   userid: {
-    type: String,
+    type: Number,
     required: true
   },
   description: {

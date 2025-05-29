@@ -41,7 +41,7 @@ const getCostsByCategory = async (req, res) => {
  */
 const getCostsByMonth = async (req, res) => {
   try {
-    const { userid } = req.query;
+    const userid = parseInt(req.query.userid);
 
     const results = await Cost.aggregate([
       { $match: { userid } },
@@ -66,7 +66,9 @@ const getCostsByMonth = async (req, res) => {
  */
 const getTotalCostsForUser = async (req, res) => {
   try {
-    const { userid, year } = req.query;
+    const { year } = req.query;
+    const userid = parseInt(req.query.userid);
+
 
     if (!year) {
       return res.status(400).json({ error: 'Year is required' });

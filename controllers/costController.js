@@ -43,7 +43,7 @@ exports.getReport = async (req, res) => {
 
 
     const costs = await Cost.find({
-      userid:id,
+      userid: parseInt(id),
       date: { $gte: startDate, $lte: endDate }
     });
 
