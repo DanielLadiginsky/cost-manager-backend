@@ -29,12 +29,16 @@ exports.getUserDetails = async (req, res) => {
 };
 
 /**
- * Get all users (first name and last name only)
+ * Get hardcoded team members (first name and last name only)
  */
 exports.getAbout = async (req, res) => {
   try {
-    const users = await User.find({}, { _id: 0, first_name: 1, last_name: 1, id: 1 });
-    return res.json(users);
+    const teamMembers = [
+      { first_name: "Daniel", last_name: "Ladiginsky" },
+      { first_name: "Roey", last_name: "Zakharoc" }
+    ];
+
+    return res.json(teamMembers);
   } catch (err) {
     console.error('Failed to fetch about data:', err);
     return res.status(500).json({ error: 'Internal server error' });

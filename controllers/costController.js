@@ -1,3 +1,6 @@
+// costController 
+
+
 const Cost = require('../models/Cost');
 
 /**
@@ -29,26 +32,28 @@ exports.addCost = async (req, res) => {
 
 /**
  * Generate monthly report grouped by category
+ * Accepts either 'id' or 'userid' as the user identifier
  */
 exports.getReport = async (req, res) => {
   try {
-    const { id, year, month } = req.query;
+    const idParam = req.query.id || req.query.userid;
+    const { year, month } = req.query;
 
-    if (!id || !year || !month) {
-      return res.status(400).json({ error: 'Missing id, year or month parameters' });
+    if (!idParam || !year || !month) {
+      return res.status(400).json({ error: 'Missing id/userid, year or month parameters' });
     }
 
+    const userId = parseInt(idParam);
     const startDate = new Date(`${year}-${month}-01`);
-    const endDate = new Date(year, month, 0); 
-
+    const endDate = new Date(year, month, 0);
 
     const costs = await Cost.find({
-      userid: parseInt(id),
+      userid: userId,
       date: { $gte: startDate, $lte: endDate }
     });
 
     const grouped = {
-      userid: id,
+      userid: userId,
       year: parseInt(year),
       month: parseInt(month),
       costs: [
@@ -79,3 +84,4 @@ exports.getReport = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
