@@ -4,27 +4,27 @@ testing getting the about
 -------------------------
 url=http://localhost:4050/api/about/
 data.status_code=200
-b'[{"id":322869421,"first_name":"Daniel","last_name":"Ladiginsky"},{"id":123123,"first_name":"Roey","last_name":"Zecharov"}]'
-data.text=[{"id":322869421,"first_name":"Daniel","last_name":"Ladiginsky"},{"id":123123,"first_name":"Roey","last_name":"Zecharov"}]
-[{'id': 322869421, 'first_name': 'Daniel', 'last_name': 'Ladiginsky'}, {'id': 123123, 'first_name': 'Roey', 'last_name': 'Zecharov'}]
+b'[{"first_name":"Daniel","last_name":"Ladiginsky"},{"first_name":"Roey","last_name":"Zakharoc"}]'
+data.text=[{"first_name":"Daniel","last_name":"Ladiginsky"},{"first_name":"Roey","last_name":"Zakharoc"}]
+[{'first_name': 'Daniel', 'last_name': 'Ladiginsky'}, {'first_name': 'Roey', 'last_name': 'Zakharoc'}]
 
 testing getting the report - 1
 ------------------------------
-url=http://localhost:4050/api/report/?id=123123&year=2025&month=2
+url=http://localhost:4050/api/report/?id=123123&year=2025&month=6
 data.status_code=200
-b'{"userid":"123123","year":2025,"month":2,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}'
-data.text={"userid":"123123","year":2025,"month":2,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
+b'{"userid":123123,"year":2025,"month":6,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}'
+data.text={"userid":123123,"year":2025,"month":6,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
 
 testing adding cost item
 ----------------------------------
 url=http://localhost:4050/api/add/
 data.status_code=201
-b'{"userid":123123,"description":"milk 9","category":"food","sum":8,"date":"2025-05-29T16:28:02.694Z","_id":"68388b12ad3c4bd23f3c7ec9","__v":0}'
+b'{"userid":123123,"description":"milk 9","category":"food","sum":8,"date":"2025-06-09T09:39:12.110Z","_id":"6846abc0f82cf4ae57989572","__v":0}'
 
 testing getting the report - 2
 ------------------------------
-url=http://localhost:4050/api/report/?id=123123&year=2025&month=2
+url=http://localhost:4050/api/report/?id=123123&year=2025&month=6
 data.status_code=200
-b'{"userid":"123123","year":2025,"month":2,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}'
-data.text={"userid":"123123","year":2025,"month":2,"costs":[{"food":[]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
+b'{"userid":123123,"year":2025,"month":6,"costs":[{"food":[{"sum":8,"description":"milk 9","day":9}]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}'
+data.text={"userid":123123,"year":2025,"month":6,"costs":[{"food":[{"sum":8,"description":"milk 9","day":9}]},{"health":[]},{"housing":[]},{"sport":[]},{"education":[]}]}
 

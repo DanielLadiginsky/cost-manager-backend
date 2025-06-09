@@ -35,7 +35,7 @@ exports.getAbout = async (req, res) => {
   try {
     const teamMembers = [
       { first_name: "Daniel", last_name: "Ladiginsky" },
-      { first_name: "Roey", last_name: "Zakharoc" }
+      { first_name: "Roey", last_name: "Zakharov" }
     ];
 
     return res.json(teamMembers);
