@@ -1,4 +1,3 @@
-﻿# Cost Manager RESTful Web Services
 # Cost Manager RESTful Web Services
 
 ## Project Overview
@@ -10,7 +9,7 @@ This project implements a RESTful web service backend for managing user expenses
 ## Team Members
 
 * **Daniel Ladiginsky**
-* **Orel Zakharoc**
+* **Orel Zakharov**
 
 ---
 
