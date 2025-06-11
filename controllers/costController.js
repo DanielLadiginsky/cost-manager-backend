@@ -8,7 +8,8 @@ const Cost = require('../models/Cost');
  */
 exports.addCost = async (req, res) => {
   try {
-    const { userid, description, category, sum, date } = req.body;
+    const userid = req.body.userid || req.body.id;
+    const {description, category, sum, date = null } = req.body;
 
     if (!userid || !description || !category || !sum) {
       return res.status(400).json({ error: 'Missing required fields' });
