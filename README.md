@@ -9,7 +9,7 @@ This project implements a RESTful web service backend for managing user expenses
 ## Team Members
 
 * **Daniel Ladiginsky**
-* **Orel Zakharov**
+* **Roey Zakharov**
 
 ---
 
